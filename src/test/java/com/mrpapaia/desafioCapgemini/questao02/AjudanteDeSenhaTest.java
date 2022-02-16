@@ -9,66 +9,74 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+
 public class AjudanteDeSenhaTest {
+	private AjudanteDeSenha ajudanteDeSenhaMock;
+
+	@Before
+	public void setUp() {
+		ajudanteDeSenhaMock = mock(AjudanteDeSenha.class);
+	}
 
 	@Test
 	public void testSenhaValida() {
-		AjudanteDeSenha ajudanteDeSenha= mock(AjudanteDeSenha.class);
-		doCallRealMethod().when(ajudanteDeSenha).validarSenha(Mockito.anyString());
-		when(ajudanteDeSenha.verificarTamanho(Mockito.anyInt())).thenReturn(true);
-		when(ajudanteDeSenha.verificarCaracterEspecial(Mockito.anyString())).thenReturn(true);
-		when(ajudanteDeSenha.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(true);
-		when(ajudanteDeSenha.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(true);
-		when(ajudanteDeSenha.verificarSeExisteNumero(Mockito.anyString())).thenReturn(true);
-		assertEquals(Integer.valueOf(0),ajudanteDeSenha.validarSenha("ABc1@a"));
+		
+		doCallRealMethod().when(ajudanteDeSenhaMock).validarSenha(Mockito.anyString());
+		when(ajudanteDeSenhaMock.verificarTamanho(Mockito.anyInt())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarCaracterEspecial(Mockito.anyString())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarSeExisteNumero(Mockito.anyString())).thenReturn(true);
+		assertEquals(Integer.valueOf(0),ajudanteDeSenhaMock.validarSenha("ABc1@a"));
 	}
 	@Test
 	public void testSenhaNaoCumpreNenhumRequisito() {
-		AjudanteDeSenha ajudanteDeSenha= mock(AjudanteDeSenha.class);
-		doCallRealMethod().when(ajudanteDeSenha).validarSenha(Mockito.anyString());
-		when(ajudanteDeSenha.verificarTamanho(Mockito.anyInt())).thenReturn(false);
-		when(ajudanteDeSenha.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteNumero(Mockito.anyString())).thenReturn(false);		
-		assertEquals(Integer.valueOf(5),ajudanteDeSenha.validarSenha(" "));
+		
+		doCallRealMethod().when(ajudanteDeSenhaMock).validarSenha(Mockito.anyString());
+		when(ajudanteDeSenhaMock.verificarTamanho(Mockito.anyInt())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteNumero(Mockito.anyString())).thenReturn(false);		
+		assertEquals(Integer.valueOf(5),ajudanteDeSenhaMock.validarSenha(" "));
 	}
 	
 	@Test
 	public void testSenhaSoContemNumeros() {
-		AjudanteDeSenha ajudanteDeSenha= mock(AjudanteDeSenha.class);
-		doCallRealMethod().when(ajudanteDeSenha).validarSenha(Mockito.anyString());
-		when(ajudanteDeSenha.verificarTamanho(Mockito.anyInt())).thenReturn(true);
-		when(ajudanteDeSenha.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteNumero(Mockito.anyString())).thenReturn(true);			
-		assertEquals(Integer.valueOf(3),ajudanteDeSenha.validarSenha(" "));
-		verify(ajudanteDeSenha,times(1)).verificarTamanho(Mockito.anyInt());
-		verify(ajudanteDeSenha,times(1)).verificarCaracterEspecial(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteLetraMaiscula(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteLetraMinuscula(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteNumero(Mockito.anyString());
+		
+		doCallRealMethod().when(ajudanteDeSenhaMock).validarSenha(Mockito.anyString());
+		when(ajudanteDeSenhaMock.verificarTamanho(Mockito.anyInt())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteNumero(Mockito.anyString())).thenReturn(true);			
+		assertEquals(Integer.valueOf(3),ajudanteDeSenhaMock.validarSenha(" "));
+		verify(ajudanteDeSenhaMock,times(1)).verificarTamanho(Mockito.anyInt());
+		verify(ajudanteDeSenhaMock,times(1)).verificarCaracterEspecial(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteLetraMaiscula(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteLetraMinuscula(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteNumero(Mockito.anyString());
 	}
 	
 	@Test
 	public void testSenhaSoContemLetras() {
-		AjudanteDeSenha ajudanteDeSenha= mock(AjudanteDeSenha.class);
-		doCallRealMethod().when(ajudanteDeSenha).validarSenha(Mockito.anyString());
-		when(ajudanteDeSenha.verificarTamanho(Mockito.anyInt())).thenReturn(true);
-		when(ajudanteDeSenha.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
-		when(ajudanteDeSenha.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(true);
-		when(ajudanteDeSenha.verificarSeExisteNumero(Mockito.anyString())).thenReturn(false);			
-		assertEquals(Integer.valueOf(3),ajudanteDeSenha.validarSenha(" "));
-		verify(ajudanteDeSenha,times(1)).verificarTamanho(Mockito.anyInt());
-		verify(ajudanteDeSenha,times(1)).verificarCaracterEspecial(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteLetraMaiscula(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteLetraMinuscula(Mockito.anyString());
-		verify(ajudanteDeSenha,times(1)).verificarSeExisteNumero(Mockito.anyString());
+		
+		doCallRealMethod().when(ajudanteDeSenhaMock).validarSenha(Mockito.anyString());
+		when(ajudanteDeSenhaMock.verificarTamanho(Mockito.anyInt())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarCaracterEspecial(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMaiscula(Mockito.anyString())).thenReturn(false);
+		when(ajudanteDeSenhaMock.verificarSeExisteLetraMinuscula(Mockito.anyString())).thenReturn(true);
+		when(ajudanteDeSenhaMock.verificarSeExisteNumero(Mockito.anyString())).thenReturn(false);			
+		assertEquals(Integer.valueOf(3),ajudanteDeSenhaMock.validarSenha(" "));
+		verify(ajudanteDeSenhaMock,times(1)).verificarTamanho(Mockito.anyInt());
+		verify(ajudanteDeSenhaMock,times(1)).verificarCaracterEspecial(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteLetraMaiscula(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteLetraMinuscula(Mockito.anyString());
+		verify(ajudanteDeSenhaMock,times(1)).verificarSeExisteNumero(Mockito.anyString());
 	}
 	
 	@Test

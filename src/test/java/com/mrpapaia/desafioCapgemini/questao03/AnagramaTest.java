@@ -11,40 +11,48 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class AnagramaTest {
 
+	private Anagrama anagramaMock;
+
+	@Before
+	public void setUp() {
+		anagramaMock = mock(Anagrama.class);
+	}
+
 	@Test
 	public void testAnagramaSucesso() {
-		Anagrama anagrama = mock(Anagrama.class);
+
 		List<Integer[]> list = new ArrayList<Integer[]>();
 		Integer[][] aux = { { 0, 3 }, { 8, 9 } };
 		list.add(aux[0]);
 		list.add(aux[1]);
-		doCallRealMethod().when(anagrama).contarAnagramas(Mockito.anyString());
-		when(anagrama.verificarLetrasRepetidas(Mockito.anyString())).thenReturn(list);
-		when(anagrama.contarSubString(Mockito.anyListOf(Integer[].class))).thenReturn(3);	
-		assertEquals(Integer.valueOf(3), anagrama.contarAnagramas("ifailuhkqq"));
-		verify(anagrama, times(1)).contarSubString(list);
-		verify(anagrama, times(1)).verificarLetrasRepetidas("ifailuhkqq");
+		doCallRealMethod().when(anagramaMock).contarAnagramas(Mockito.anyString());
+		when(anagramaMock.verificarLetrasRepetidas(Mockito.anyString())).thenReturn(list);
+		when(anagramaMock.contarSubString(Mockito.anyList())).thenReturn(3);
+		assertEquals(Integer.valueOf(3), anagramaMock.contarAnagramas("ifailuhkqq"));
+		verify(anagramaMock, times(1)).contarSubString(list);
+		verify(anagramaMock, times(1)).verificarLetrasRepetidas("ifailuhkqq");
 	}
-	
+
 	@Test
 	public void testAnagramaFalha() {
-		Anagrama anagrama = mock(Anagrama.class);
+
 		List<Integer[]> list = new ArrayList<Integer[]>();
 		Integer[][] aux = { { 0, 3 }, { 8, 9 } };
 		list.add(aux[0]);
 		list.add(aux[1]);
-		doCallRealMethod().when(anagrama).contarAnagramas(Mockito.anyString());
-		when(anagrama.verificarLetrasRepetidas(Mockito.anyString())).thenReturn(list);
-		when(anagrama.contarSubString(Mockito.anyListOf(Integer[].class))).thenReturn(3);		
+		doCallRealMethod().when(anagramaMock).contarAnagramas(Mockito.anyString());
+		when(anagramaMock.verificarLetrasRepetidas(Mockito.anyString())).thenReturn(list);
+		when(anagramaMock.contarSubString(Mockito.anyList())).thenReturn(3);
 
-		assertNotEquals(Integer.valueOf(0), anagrama.contarAnagramas("ifailuhkqq"));
-		verify(anagrama, times(1)).contarSubString(list);
-		verify(anagrama, times(1)).verificarLetrasRepetidas("ifailuhkqq");
+		assertNotEquals(Integer.valueOf(0), anagramaMock.contarAnagramas("ifailuhkqq"));
+		verify(anagramaMock, times(1)).contarSubString(list);
+		verify(anagramaMock, times(1)).verificarLetrasRepetidas("ifailuhkqq");
 	}
 
 	@Test
